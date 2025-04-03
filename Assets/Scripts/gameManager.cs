@@ -1,39 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class gameManager : MonoBehaviour
+public class gamemanager : MonoBehaviour
 {
-public GameObject enemy01;
-public GameObject enemy02;
-public GameObject miniBoss;
-// Start is called before the first frame update
+    public GameObject playerPrefab;
+    public GameObject enemyOnePrefab;
+    public GameObject cloudPrefab;
+    public GameObject healthPrefab;
+
+    public float horizontalScreenSize;
+    public float verticalScreenSize;
+    private int score;
+    public player Player;
+
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI scoreText;
+    // Start is called before the first frame update
     void Start()
     {
-     InvokeRepeating("Enemy01Spawn", 2.0f, 0.3f);
-     //InvokeRepeating("Enemy02Spawn", 2.0f, 0.3f);
-     InvokeRepeating("miniBossSpawn", 15.0f, 15.0f);
+        Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        horizontalScreenSize = 10f;
+        verticalScreenSize = 6.5f;
+        CreateSky();
+        InvokeRepeating("CreateEnemy", 1f, 3f);
+        InvokeRepeating("CreateHealth", 1f, 3f);
+        score = 0;
+        
     }
 
-   void Enemy01Spawn ()
-   {
-        var spawnpoint = new Vector3(Random.Range(-8.4f, 8.41f), 6.8f, 0f);
-        Instantiate(enemy01, spawnpoint, Quaternion.identity);
-    }
-
-    // Created Visual Clutter. Replaced with MiniBoss01
-   // void Enemy02Spawn (){
-   //     var spawnpoint = new Vector3(11, Random.Range(-4.4f, 6.5f), 0f);
-   //     Instantiate(enemy02, spawnpoint, Quaternion.identity);
-  //  }
-
-    void miniBossSpawn (){
-        var spawnpoint = new Vector3(0f, 6.0f, 0f);
-        Instantiate (miniBoss, spawnpoint, Quaternion.identity);
-    }
     // Update is called once per frame
     void Update()
     {
+        
+    }
+    void CreateSky(){
+        for (int i = 0; i < 30; i++){
+             Instantiate(cloudPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize), Random.Range(-verticalScreenSize, verticalScreenSize), 0), Quaternion.identity);
+        }
+    }
+    void CreateEnemy()
+    {
+        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, verticalScreenSize, 0), Quaternion.Euler(180, 0, 0));
+    }
+    public void AddScore(int earnedScore){
+        score = score + earnedScore;
+        scoreText.text = "Score: " + score;
+    }
     
+    public void ChangeLivesText (int currentLives){
+        livesText.text = "Lives: " + currentLives;
+    }
+    void CreateHealth(){
+        Instantiate(healthPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, Random.Range(-2, verticalScreenSize) * 0.9f, 0), Quaternion.identity);
     }
 }
