@@ -10,6 +10,7 @@ public class gamemanager : MonoBehaviour
     public GameObject enemyOnePrefab;
     public GameObject cloudPrefab;
     public GameObject healthPrefab;
+    public GameObject coinPrefab;
 
     public float horizontalScreenSize;
     public float verticalScreenSize;
@@ -26,7 +27,8 @@ public class gamemanager : MonoBehaviour
         verticalScreenSize = 6.5f;
         CreateSky();
         InvokeRepeating("CreateEnemy", 1f, 3f);
-        InvokeRepeating("CreateHealth", 1f, 3f);
+        InvokeRepeating("CreateHealth", 2f, 5f);
+        InvokeRepeating("CreateCoin", 1f, 3f);
         score = 0;
         
     }
@@ -55,5 +57,8 @@ public class gamemanager : MonoBehaviour
     }
     void CreateHealth(){
         Instantiate(healthPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, Random.Range(-2, verticalScreenSize) * 0.9f, 0), Quaternion.identity);
+    }
+    void CreateCoin(){
+        Instantiate(coinPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, Random.Range(-2, verticalScreenSize) * 0.9f, 0), Quaternion.identity);
     }
 }

@@ -506,6 +506,7 @@ MonoBehaviour:
   enemyOnePrefab: {fileID: 3787175081042975499, guid: 5cb25496917546c44997f16361ba6205, type: 3}
   cloudPrefab: {fileID: 3118671489167177802, guid: d0c978c1cedf29c4fa9c381120d9f2c2, type: 3}
   healthPrefab: {fileID: 8383380915316587476, guid: a4af509753a50254daa16d889e570b50, type: 3}
+  coinPrefab: {fileID: 5256823314556171385, guid: 6fa078111139bc04d8360a1dd10a8afc, type: 3}
   horizontalScreenSize: 0
   verticalScreenSize: 0
   Player: {fileID: 1846710205833636752, guid: 6c6b16c234ad09c46a42d14b91a16cba, type: 3}
