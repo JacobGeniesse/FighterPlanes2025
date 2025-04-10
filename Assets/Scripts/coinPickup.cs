@@ -15,7 +15,7 @@ public class coinPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthTimer -= Time.deltaTime;
+        healthTimer -= Time.deltaTime * gameManager.cloudSpeed;
         if(healthTimer <= 3f){
             transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.75f);
         }

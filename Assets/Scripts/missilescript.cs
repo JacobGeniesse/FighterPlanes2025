@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class missilescript : MonoBehaviour
 {
-    private float missileDirection = 1.0f;
+    public float missileDirection = 1.0f;
     private float spawnPoint;
     // Start is called before the first frame update
     void Start()
